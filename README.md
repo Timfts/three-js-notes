@@ -1,0 +1,1 @@
+Just a repository to keep my notes and experiments with THREE.js proposed by the [Three js journey course ](https://threejs-journey.xyz/)
