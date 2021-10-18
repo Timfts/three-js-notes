@@ -3,4 +3,5 @@
 /* import "./02-transform-objects" */
 /* import "./03-animations" */
 /* import "./04-cameras" */
-import "./05-viewport"
+/* import "./05-viewport" */
+import "./06-geometries"
