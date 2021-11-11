@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "animejs": "^3.2.1",
+    "dat.gui": "^0.7.7",
     "gsap": "^3.7.1",
     "popmotion": "^9.4.0",
     "three": "^0.132.2",
