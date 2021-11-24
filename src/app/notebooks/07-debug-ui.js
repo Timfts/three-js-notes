@@ -2,12 +2,19 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import * as dat from "dat.gui";
 import createCanvas from "../helpers/create-canvas";
+import gsap from "gsap";
 
 /**
  * Debug
  */
 
-const gui = new dat.GUI();
+const gui = new dat.GUI({width: 400});
+const parameters = {
+  color: 0x3ba9b7,
+  spin: () => {
+    gsap.to(mesh.rotation, { y: mesh.rotation.y + 10, duration: 1 });
+  },
+};
 
 const getLimitedPixelRatio = () => Math.min(window.devicePixelRatio, 2);
 
@@ -68,11 +75,18 @@ const scene = new THREE.Scene();
 
 // ----- Mesh
 const geometry = new THREE.BoxGeometry(1, 1, 1);
-const material = new THREE.MeshBasicMaterial({ color: "red" });
+const material = new THREE.MeshBasicMaterial({ color: parameters.color });
 const mesh = new THREE.Mesh(geometry, material);
 scene.add(mesh);
 
-gui.add(mesh.position, "y", -3, 3, 0.01);
+gui.add(mesh.position, "y").min(-3).max(3).step(0.01).name("Elevation");
+gui.add(mesh, "visible");
+gui.add(material, "wireframe");
+gui.addColor(parameters, "color").onChange(() => {
+  material.color.set(parameters.color);
+});
+
+gui.add(parameters, "spin");
 
 const camera = new THREE.PerspectiveCamera(
   75,
